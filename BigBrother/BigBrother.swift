@@ -9,57 +9,61 @@
 import Foundation
 import UIKit
 
-/**
-    Registers BigBrother to the shared NSURLSession (and to NSURLConnection).
-*/
-public func addToSharedSession() {
-    NSURLProtocol.registerClass(BigBrother.URLProtocol.self)
-}
+public class BigBrother: NSObject {
 
-/**
-    Adds BigBrother to a NSURLSessionConfiguration that will be used to create a custom NSURLSession.
-
-    - parameter configuration: The configuration on which BigBrother will be added
-*/
-public func addToSessionConfiguration(configuration: NSURLSessionConfiguration) {
-    // needs to be inserted at the beginning (see https://github.com/AliSoftware/OHHTTPStubs/issues/65 )
-    let arr: [AnyClass]
-    if let classes = configuration.protocolClasses {
-        arr = [BigBrother.URLProtocol.self] + classes
-    } else {
-        arr = [BigBrother.URLProtocol.self]
+    /**
+        Registers BigBrother to the shared NSURLSession (and to NSURLConnection).
+    */
+    public class func addToSharedSession() {
+        NSURLProtocol.registerClass(BigBrotherURLProtocol.self)
     }
-    configuration.protocolClasses = arr
-}
 
-/**
-    Removes BigBrother from the shared NSURLSession (and to NSURLConnection).
-*/
-public func removeFromSharedSession() {
-    NSURLProtocol.unregisterClass(BigBrother.URLProtocol.self)
-}
+    /**
+        Adds BigBrother to a NSURLSessionConfiguration that will be used to create a custom NSURLSession.
 
-/**
-    Removes BigBrother from a NSURLSessionConfiguration.
-    You must create a new NSURLSession from the updated configuration to stop using BigBrother.
+        - parameter configuration: The configuration on which BigBrother will be added
+    */
+    public class func addToSessionConfiguration(configuration: NSURLSessionConfiguration) {
+        // needs to be inserted at the beginning (see https://github.com/AliSoftware/OHHTTPStubs/issues/65 )
+        let arr: [AnyClass]
+        if let classes = configuration.protocolClasses {
+            arr = [BigBrotherURLProtocol.self] + classes
+        } else {
+            arr = [BigBrotherURLProtocol.self]
+        }
+        configuration.protocolClasses = arr
+    }
 
-    - parameter configuration: The configuration from which BigBrother will be removed (if present)
-*/
-public func removeFromSessionConfiguration(configuration: NSURLSessionConfiguration) {
-    configuration.protocolClasses = configuration.protocolClasses?.filter {  $0 !== BigBrother.URLProtocol.self }
+    /**
+        Removes BigBrother from the shared NSURLSession (and to NSURLConnection).
+    */
+    public class func removeFromSharedSession() {
+        NSURLProtocol.unregisterClass(BigBrotherURLProtocol.self)
+    }
+
+    /**
+        Removes BigBrother from a NSURLSessionConfiguration.
+        You must create a new NSURLSession from the updated configuration to stop using BigBrother.
+
+        - parameter configuration: The configuration from which BigBrother will be removed (if present)
+    */
+    public class func removeFromSessionConfiguration(configuration: NSURLSessionConfiguration) {
+        configuration.protocolClasses = configuration.protocolClasses?.filter {  $0 !== BigBrotherURLProtocol.self }
+    }
+
 }
 
 /**
 *  A custom NSURLProtocol that automatically manages UIApplication.sharedApplication().networkActivityIndicatorVisible.
 */
-public class URLProtocol: NSURLProtocol {
+public class BigBrotherURLProtocol: NSURLProtocol {
     
     var connection: NSURLConnection?
     var mutableData: NSMutableData?
     var response: NSURLResponse?
     
     /// The singleton instance.
-    public static var manager = BigBrother.Manager.sharedInstance
+    public static var manager = BigBrotherManager.sharedInstance
     
     // MARK: NSURLProtocol
     
@@ -80,7 +84,7 @@ public class URLProtocol: NSURLProtocol {
     }
     
     override public func startLoading() {
-        URLProtocol.manager.incrementActivityCount()
+        BigBrotherURLProtocol.manager.incrementActivityCount()
         
         let newRequest = request.mutableCopy() as! NSMutableURLRequest
         NSURLProtocol.setProperty(true, forKey: NSStringFromClass(self.dynamicType), inRequest: newRequest)
@@ -91,7 +95,7 @@ public class URLProtocol: NSURLProtocol {
         connection?.cancel()
         connection = nil
         
-        URLProtocol.manager.decrementActivityCount()
+        BigBrotherURLProtocol.manager.decrementActivityCount()
     }
     
     // MARK: NSURLConnectionDelegate

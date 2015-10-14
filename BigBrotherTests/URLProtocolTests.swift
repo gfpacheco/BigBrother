@@ -48,7 +48,7 @@ class URLProtocolTests: XCTestCase {
         }
         swizzledMethods = []
         
-        NSURLProtocol.unregisterClass(BigBrother.URLProtocol)
+        NSURLProtocol.unregisterClass(BigBrotherURLProtocol)
         NSURLProtocol.registeredClasses = NSMutableArray()
         
         super.tearDown()
@@ -66,7 +66,7 @@ class URLProtocolTests: XCTestCase {
         XCTAssertNotNil(configuration.protocolClasses)
         
         let protocols = configuration.protocolClasses!
-        XCTAssertTrue(protocols.contains { $0 === BigBrother.URLProtocol.self } )
+        XCTAssertTrue(protocols.contains { $0 === BigBrotherURLProtocol.self } )
     }
     
     func testRemoveFromSessionConfiguration() {
@@ -83,7 +83,7 @@ class URLProtocolTests: XCTestCase {
         XCTAssertNotNil(configuration.protocolClasses)
         
         let protocols = configuration.protocolClasses!
-        XCTAssertFalse(protocols.contains { $0 === BigBrother.URLProtocol.self } )
+        XCTAssertFalse(protocols.contains { $0 === BigBrotherURLProtocol.self } )
     }
     
     func testAddToSharedSession() {
@@ -94,7 +94,7 @@ class URLProtocolTests: XCTestCase {
         let numberOfProtocols = NSURLProtocol.registeredClasses.count
         XCTAssertEqual(numberOfProtocols, previousNumberOfProtocols + 1)
         
-        XCTAssertTrue(NSURLProtocol.registeredClasses.contains { $0 === BigBrother.URLProtocol.self } )
+        XCTAssertTrue(NSURLProtocol.registeredClasses.contains { $0 === BigBrotherURLProtocol.self } )
     }
     
     func testRemoveFromSharedSession() {
@@ -107,7 +107,7 @@ class URLProtocolTests: XCTestCase {
         let numberOfProtocols = NSURLProtocol.registeredClasses.count
         XCTAssertEqual(numberOfProtocols, previousNumberOfProtocols - 1)
         
-        XCTAssertFalse(NSURLProtocol.registeredClasses.contains { $0 === BigBrother.URLProtocol.self } )
+        XCTAssertFalse(NSURLProtocol.registeredClasses.contains { $0 === BigBrotherURLProtocol.self } )
     }
 }
 

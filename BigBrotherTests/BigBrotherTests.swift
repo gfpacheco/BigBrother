@@ -17,11 +17,11 @@ class BigBrotherTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        BigBrother.URLProtocol.manager = BigBrother.Manager(application: mockApplication)
+        BigBrotherURLProtocol.manager = BigBrotherManager(application: mockApplication)
     }
     
     override func tearDown() {
-        BigBrother.URLProtocol.manager = BigBrother.Manager()
+        BigBrotherURLProtocol.manager = BigBrotherManager()
         
         super.tearDown()
     }

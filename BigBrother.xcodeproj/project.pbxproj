@@ -12,7 +12,7 @@
 		D49921751A5612D800B38954 /* BigBrother.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49921691A5612D800B38954 /* BigBrother.framework */; };
 		D499217C1A5612D800B38954 /* URLProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D499217B1A5612D800B38954 /* URLProtocolTests.swift */; };
 		D49921871A5612E400B38954 /* BigBrother.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49921851A5612E400B38954 /* BigBrother.swift */; };
-		D49921881A5612E400B38954 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49921861A5612E400B38954 /* Manager.swift */; };
+		D49921881A5612E400B38954 /* BigBrotherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49921861A5612E400B38954 /* BigBrotherManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +34,7 @@
 		D499217A1A5612D800B38954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D499217B1A5612D800B38954 /* URLProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolTests.swift; sourceTree = "<group>"; };
 		D49921851A5612E400B38954 /* BigBrother.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBrother.swift; sourceTree = "<group>"; };
-		D49921861A5612E400B38954 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		D49921861A5612E400B38954 /* BigBrotherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBrotherManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			children = (
 				D499216E1A5612D800B38954 /* BigBrother.h */,
 				D49921851A5612E400B38954 /* BigBrother.swift */,
-				D49921861A5612E400B38954 /* Manager.swift */,
+				D49921861A5612E400B38954 /* BigBrotherManager.swift */,
 				D499216C1A5612D800B38954 /* Supporting Files */,
 			);
 			path = BigBrother;
@@ -220,7 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D49921871A5612E400B38954 /* BigBrother.swift in Sources */,
-				D49921881A5612E400B38954 /* Manager.swift in Sources */,
+				D49921881A5612E400B38954 /* BigBrotherManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

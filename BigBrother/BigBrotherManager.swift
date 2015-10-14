@@ -1,5 +1,5 @@
 //
-//  Manager.swift
+//  BigBrotherManager.swift
 //  BigBrother
 //
 //  Created by Marcelo Fabri on 01/01/15.
@@ -23,9 +23,9 @@ extension UIApplication: NetworkActivityIndicatorOwner {}
 
 /**
    Manages manages the state of the network activity indicator in the status bar.
-   Based on AFNetworkActivityIndicatorManager from AFNetworking.
+   Based on AFNetworkActivityIndicatorBigBrotherManager from AFNetworking.
 */
-public class Manager {
+public class BigBrotherManager {
     private var _activityCount: Int = 0
    
     private var activityCount: Int {
@@ -63,7 +63,7 @@ public class Manager {
     }
     
     /// The singleton instance.
-    public static let sharedInstance = Manager()
+    public static let sharedInstance = BigBrotherManager()
     
     /**
         Increments the number of active network requests. If this number was zero before incrementing, this will start animating the status bar network activity indicator.
